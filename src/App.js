@@ -1,5 +1,19 @@
 import React from "react";
 import "./App.css";
+import { provideFluentDesignSystem, fluentCard, fluentButton, fluentSearch } from '@fluentui/web-components';
+import { provideReactWrapper } from '@microsoft/fast-react-wrapper';
+
+provideFluentDesignSystem()
+    .register(
+        fluentSearch()
+    );
+
+const { wrap } = provideReactWrapper(React, provideFluentDesignSystem());
+
+export const FluentCard = wrap(fluentCard());
+export const FluentButton = wrap(fluentButton());
+
+let section1 = 1;
 
 function App() {
   return (
@@ -14,22 +28,16 @@ function App() {
       </header>
 
       <main>
-        <div className="sidebar">
-          <div className="group-search">
-            <input type="text" placeholder="Group Name" className="search-input" />
+        <aside>
+          <div class="groupsearchbar">
+              <input type="text" placeholder="Search" name="search"></input>
           </div>
-          <div className="group-item">
-            <div className="group-avatar">
-              <img src="avatar1.png" alt="Avatar 1" />
-              <img src="avatar2.png" alt="Avatar 2" />
-            </div>
-            <span className="group-name">+1 BobGang</span>
-          </div>
-          <button className="find-more-button">Find more matches</button>
-        </div>
-        <div className="main-content">
-          {/* Main content is now correctly stretching */}
-        </div>
+          <fluent-button class="groupchat" >BobGang</fluent-button>
+        </aside>
+        <section>
+          <h1>Empty</h1>
+        </section>
+        
       </main>
     </div>
   );
