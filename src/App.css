@@ -38,19 +38,19 @@ main {
 }
 
 .sidebar {
-  width: 30%;
+  width: 25%;
   background-color: #F4E4C9;
-  padding: 20px;
+  padding: 10px;
   box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
-  height: 87%; /* Sidebar should take full height  the group search bar on it*/
+  height: 100%; /* Sidebar should take full height  the group search bar on it*/
   overflow-y: auto;
 }
 
 .main-content {
   flex: 1;
   background-color: #FDF3E3;
-  height: 90%; /* Ensures the main content area takes the remaining height */
+  height: 100%; /* Ensures the main content area takes the remaining height */
 }
 
 .empty-text {
@@ -65,7 +65,7 @@ main {
 }
 
 .search-input {
-  width: 100%;
+  width: 80%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;

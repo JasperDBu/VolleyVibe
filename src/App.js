@@ -18,7 +18,6 @@ function App() {
           <div className="group-search">
             <input type="text" placeholder="Group Name" className="search-input" />
           </div>
-          <span className="empty-text">Empty</span>
           <div className="group-item">
             <div className="group-avatar">
               <img src="avatar1.png" alt="Avatar 1" />
