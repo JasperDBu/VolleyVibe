@@ -13,8 +13,6 @@ const { wrap } = provideReactWrapper(React, provideFluentDesignSystem());
 export const FluentCard = wrap(fluentCard());
 export const FluentButton = wrap(fluentButton());
 
-let section1 = 1;
-
 function App() {
   return (
     <div className="container">
@@ -30,17 +28,24 @@ function App() {
       <main>
         <aside>
           <div class="groupsearchbar">
-              <input type="text" placeholder="Search" name="search"></input>
+              <input type="text" placeholder="Search" className="search-input"></input>
           </div>
-          <fluent-button class="groupchat" >BobGang</fluent-button>
+          <button class="groupchat" >BobGang</button>
+          <fluentButton class="find-match-button">
+              <span className="plus-icon">+</span>
+            </fluentButton>
         </aside>
         <section>
           <h1>Empty</h1>
+          <div id="group-chat">
+            <button class="test-button">try me</button> 
+          </div>
         </section>
         
       </main>
     </div>
   );
 }
+
 
 export default App;
