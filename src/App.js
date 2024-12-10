@@ -15,7 +15,7 @@ export const FluentButton = wrap(fluentButton());
 
 function App() {
   const OpenGroupChat = () => {
-    document.getElementById("group-chat").style.display = "block";
+    document.getElementById("group-chat").style.display = "flex";
     document.getElementById("empty").style.display = "none";
   };
 
@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="container">
       <header>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
         <div className="header-left">
           <span className="username">BigBob</span>
         </div>
@@ -52,7 +52,18 @@ function App() {
             <h1> EMPTY</h1>
           </div>
           <div id="group-chat">
-            <button class="test-button">try me</button> 
+            <div className="group-chat-topbar">
+              <div className="group-chat-title">BobGang</div>
+            </div>
+            <div className="chat">
+                
+            </div>
+            <div className="chat-bar">
+              <form>
+                <input className="chat-input" type="text" placeholder="text"></input>
+              </form>
+              <span class="chat-icon material-symbols-outlined">send</span>
+            </div>
           </div>
         </section>
         

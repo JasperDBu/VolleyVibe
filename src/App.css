@@ -78,7 +78,7 @@ aside{
   margin-left: 10%;
   padding: 3%;
   width: 80%;
-  color: rgb(0, 0, 0);
+  background-color: white;
   border: none;
   outline: none;
   border-radius: 20px;
@@ -101,23 +101,58 @@ aside{
 
 section{
   width: 80%;
-  padding: 10%;
-  
 }
 
 #empty{
   text-align: center;
   font-size: 60px;
   display: block;
+  padding-top: 15%;
+  color: rgba( 0, 0, 0, 0.25);
 }
 
 #group-chat{
   display: none;
+  flex-direction: column;
 }
 
-.test-button{
-  background-color: blue;
-  cursor: pointer;
+.group-chat-topbar{
+  display: flex;
+  margin: 1%;
+  padding: 1% ;
+  background-color: white;
+  border-radius: 20px;
 }
 
+.group-chat-title{
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.chat-bar{
+  align-items: center;
+  background-color: white;
+  margin: 2%;
+  margin-top: auto;
+  padding: 1%;
+  border-radius: 20px;
+  height: max-content;
+}
+
+.chat-input{
+  margin-left: 2%;
+  margin-top: 2px;
+  font-size: large;
+  float: left;
+  width: 90%;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.chat-icon{
+  float: right;
+  margin-right: 2%;
+  margin-left: 2%;
+}
 
