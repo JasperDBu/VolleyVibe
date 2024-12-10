@@ -29,6 +29,10 @@ header {
 .header-right .app-title {
   font-weight: bold;
   font-size: 1.2em;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 main {
@@ -45,22 +49,41 @@ aside{
 }
 
 .groupsearchbar{
-  margin-left: 5%;
+  display: flex;
+  align-items: center;
+  margin: 5%;
   border: none;
-  height: fit-content;
-  width: 90%;
-  background-color: #ffffff;
+  width: max-content;
+  background-color: white;
+  border-radius: 28px;
+  width: 84%;
+  padding: 3%;
 }
 
 .search-input{
-  height: 20;
-  width: 100%;
+  font-size: medium;
+  flex: 1;
+  outline: none;
+  border: none;
+  background-color: transparent;
 }
+
+.search-input::placeholder,
+.search-icon{
+  color: rgba( 0, 0, 0, 0.25);
+}
+
 .groupchat{
   margin-top: 2%;
   margin-left: 10%;
+  padding: 3%;
   width: 80%;
   color: rgb(0, 0, 0);
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  font-size: medium;
+  cursor: pointer;
 }
 
 .find-match-button{
@@ -78,13 +101,18 @@ aside{
 
 section{
   width: 80%;
-  text-align: center;
-  font-size: 60px;
+  padding: 10%;
   
 }
 
-#group-chat{
+#empty{
+  text-align: center;
+  font-size: 60px;
   display: block;
+}
+
+#group-chat{
+  display: none;
 }
 
 .test-button{

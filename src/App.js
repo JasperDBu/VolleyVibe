@@ -14,29 +14,43 @@ export const FluentCard = wrap(fluentCard());
 export const FluentButton = wrap(fluentButton());
 
 function App() {
+  const OpenGroupChat = () => {
+    document.getElementById("group-chat").style.display = "block";
+    document.getElementById("empty").style.display = "none";
+  };
+
+  const GoHome = () => {
+    document.getElementById("group-chat").style.display = "none";
+    document.getElementById("empty").style.display = "block";
+  };
+
   return (
     <div className="container">
       <header>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
         <div className="header-left">
           <span className="username">BigBob</span>
         </div>
         <div className="header-right">
-          <span className="app-title">VolleyVibe</span>
+          <button className="app-title" onClick={GoHome}>VolleyVibe</button>
         </div>
       </header>
 
       <main>
         <aside>
           <div class="groupsearchbar">
-              <input type="text" placeholder="Search" className="search-input"></input>
-          </div>
-          <button class="groupchat" >BobGang</button>
+           <span class="search-icon material-symbols-outlined"> search </span>
+            <input className="search-input" type="text" placeholder="Search" ></input>
+         </div>
+          <button class="groupchat" onClick={OpenGroupChat} >BobGang</button>
           <fluentButton class="find-match-button">
               <span className="plus-icon">+</span>
             </fluentButton>
         </aside>
         <section>
-          <h1>Empty</h1>
+          <div id = "empty">
+            <h1> EMPTY</h1>
+          </div>
           <div id="group-chat">
             <button class="test-button">try me</button> 
           </div>
@@ -46,6 +60,11 @@ function App() {
     </div>
   );
 }
+
+
+
+
+
 
 
 export default App;
