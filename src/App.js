@@ -29,6 +29,7 @@ function App() {
       <header>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
         <div className="header-left">
+           <span class="header-icon material-symbols-outlined">account_circle</span>
           <span className="username">BigBob</span>
         </div>
         <div className="header-right">
@@ -54,9 +55,9 @@ function App() {
           <div id="group-chat">
             <div className="group-chat-topbar">
               <div className="group-chat-title">BobGang</div>
+              <span class="material-symbols-outlined">menu</span>
             </div>
             <div className="chat">
-                
             </div>
             <div className="chat-bar">
               <form>

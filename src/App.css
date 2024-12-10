@@ -18,7 +18,13 @@ header {
   align-items: center;
   padding: 10px 20px;
   background-color: #ffffff;
-  flex-shrink: 0;
+  flex-shrink: 10;
+  align-items: center;
+}
+
+.header-left{
+  display: flex;
+  align-items: center;
 }
 
 .header-left .username {
@@ -137,6 +143,10 @@ section{
   padding: 1%;
   border-radius: 20px;
   height: max-content;
+}
+
+.chat{
+
 }
 
 .chat-input{
