@@ -50,9 +50,11 @@ function App() {
     setShowTeamOptions(false);
   };
 
-  const handlePlusClick = () => {
+  const handlePlusClick = () => { 
     setShowWelcome(false);
     setShowTeamOptions(true);
+    document.getElementById("empty").style.display = "none";
+    document.getElementById("group-chat").style.display = "none";
   };
 
   const toggleMenu = () => setShowMenu(!showMenu);
@@ -61,6 +63,7 @@ function App() {
     setResetScreen(true);
     setShowMenu(false);
     setShowBookingOptions(true);
+    document.getElementById("group-chat").style.display = "none";
   };
 
   const handleLocationSelect = (location) => {
@@ -92,7 +95,7 @@ function App() {
 
   const GoHome = () => {
     document.getElementById("group-chat").style.display = "none";
-    document.getElementById("empty").style.display = "block";
+    document.getElementById("empty").style.display = "flex";
   };
 
   return (
@@ -114,11 +117,11 @@ function App() {
            <span class="search-icon material-symbols-outlined"> search </span>
             <input className="search-input" type="text" placeholder="Search" ></input>
          </div>
-         <div className="group-avatar">
+         <div className="group-avatar" onClick={OpenGroupChat}>
               {/* Use Material Icon for avatars */}
               <span className="material-symbols-outlined">account_circle</span>
               <span className="material-symbols-outlined">account_circle</span>
-            <span className="group-name" onClick={OpenGroupChat}>+1 BobGang</span>
+            <span className="group-name">+1 BobGang</span>
             </div>
           <div className="find-more-button" onClick={handlePlusClick}>+</div>
         </aside>
