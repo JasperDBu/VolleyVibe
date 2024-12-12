@@ -14,16 +14,17 @@ export const FluentCard = wrap(fluentCard());
 export const FluentButton = wrap(fluentButton());
 
 function App() {
-  const [teamSize, setTeamSize] = useState(null);
+ // const [teamSize, setTeamSize] = useState(null);
   const [showTeamOptions, setShowTeamOptions] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState(null);
-  const [showWelcome, setShowWelcome] = useState(true);
+ // const [showWelcome, setShowWelcome] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const [resetScreen, setResetScreen] = useState(false);
   const [showBookingOptions, setShowBookingOptions] = useState(false);
   const [screenReset, setScreenReset] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [selectedCourt, setSelectedCourt] = useState(null);
+  const [showPaymentOptions, setShowPaymentOptions] = useState(false); // State to control payment options screen
 
   const profiles = [
     { id: 1, name: "Alice", icon: "account_circle" },
@@ -51,7 +52,6 @@ function App() {
   };
 
   const handlePlusClick = () => { 
-    setShowWelcome(false);
     setShowTeamOptions(true);
     document.getElementById("empty").style.display = "none";
     document.getElementById("group-chat").style.display = "none";
@@ -77,6 +77,14 @@ function App() {
     setScreenReset(true);
   };
 
+  const handlePaymentClick = () => {
+    setShowPaymentOptions(true);
+    setShowTeamOptions(false);
+    setShowBookingOptions(false);
+    document.getElementById("group-chat").style.display = "none";
+  };
+
+
   const renderSchedule = () => {
     const times = ["9:00 AM", "10:30 AM", "12:00 PM", "1:30 PM", "3:00 PM", "4:30 PM"];
     return times.map((time, index) => (
@@ -91,11 +99,15 @@ function App() {
   const OpenGroupChat = () => {
     document.getElementById("group-chat").style.display = "flex";
     document.getElementById("empty").style.display = "none";
+    setShowTeamOptions(false);
+    setShowBookingOptions(false);
   };
 
   const GoHome = () => {
     document.getElementById("group-chat").style.display = "none";
-    document.getElementById("empty").style.display = "flex";
+    document.getElementById("empty").style.display = "block";
+    setShowTeamOptions(false);
+    setShowBookingOptions(false);
   };
 
   return (
@@ -176,18 +188,34 @@ function App() {
                 <div className="time-slots">{renderSchedule()}</div>
               </div>
             )}
+            
+            {/* Payment Options styled like Court Options */}
+            {showPaymentOptions && (
+              <div className="payment-options">
+                <div className="payment-option" onClick={() => console.log("Selected Credit Card")}>
+                  Credit/Debit Card
+                </div>
+                <div className="payment-option" onClick={() => console.log("Selected PayPal")}>
+                  PayPal
+                </div>
+                <div className="payment-option" onClick={() => console.log("Selected Bank Transfer")}>
+                  Bank Transfer
+                </div>
+              </div>
+            )}
+
             <div id = "empty">
               <h1> EMPTY</h1>
             </div>
             <div id="group-chat">
               <div className="group-chat-topbar">
                 <div className="group-chat-title">BobGang</div>
-                {!showWelcome && <div className="hamburger-icon" onClick={toggleMenu}>&#9776;</div>}
+                <div className="hamburger-icon" onClick={toggleMenu}>&#9776;</div>
                 {showMenu && (
                   <div className="dropdown-menu">
                     <div className="menu-item">Group Chat</div>
                     <div className="menu-item" onClick={handleBookingClick}>Booking</div>
-                    <div className="menu-item">Payment</div>
+                    <div className="menu-item" onClick={handlePaymentClick}>Payment</div>
                   </div>
             )}
               </div>

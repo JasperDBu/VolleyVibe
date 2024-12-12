@@ -461,3 +461,35 @@ section{
   border-radius: 8px;
 }
 
+.payment-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.payment-option {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  color: #333;;
+}
+.payment-option:hover {
+  transform: scale(1.05);
+  background-color: #e0e0e0;
+}
+.payment-option:active {
+  transform: scale(1);
+}
+.material-symbols-outlined {
+  font-size: 24px;
+}
