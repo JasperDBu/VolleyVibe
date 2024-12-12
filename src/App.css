@@ -15,10 +15,15 @@ html, body {
 header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 10px 20px;
-  background-color: #f4f4f4;
-  flex-shrink: 0;
+  background-color: #ffffff;
+  flex-shrink: 10;
+  align-items: center;
+}
+
+.header-left{
+  display: flex;
+  align-items: center;
 }
 
 .header-left .username {
@@ -29,48 +34,63 @@ header {
 .header-right .app-title {
   font-weight: bold;
   font-size: 1.2em;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 main {
   display: flex;
   flex: 1;
+  height: 90%; /* Ensures the main area fills the rest of the page */
+  background-color: #FDF3E3;
 }
 
-.sidebar {
-  width: 30%;
+aside{
   background-color: #F4E4C9;
-  padding: 20px;
-  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
-  height: 100%; /* Sidebar should take full height */
-  overflow-y: auto;
+  width: 20%;
+  padding: 15px;
 }
 
 .main-content {
   flex: 1;
-  display: flex;
+   /* display: flex; */
   justify-content: center;
   align-items: center;
   background-color: #FDF3E3;
   padding: 20px;
 }
 
-.group-search {
-  margin-bottom: 20px;
+.groupsearchbar{
+  display: flex;
+  align-items: center;
+  margin: 5%;
+  border: none;
+  width: max-content;
+  background-color: white;
+  border-radius: 28px;
+  width: 84%;
+  padding: 3%;
 }
 
-.search-input {
-  width: 74%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1em;
+.search-input{
+  font-size: medium;
+  flex: 1;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+.search-input::placeholder,
+.search-icon{
+  color: rgba( 0, 0, 0, 0.25);
 }
 
 .group-item {
   display: flex;
   align-items: center;
-  padding: 10px 15px;
+  padding: 5px 15px;
   margin-bottom: 20px;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -79,23 +99,41 @@ main {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   width: 200px;
 }
+.group-name {
+  font-weight: bold;
+  border: 2px solid #007bff; /* Add a border */
+  padding: 10px 90px; /* Adjust padding for balance */
+  border-radius: 50px; /* Optional, rounded corners */
+  display: flex;
+  align-items: center; /* Vertically center icons and text */
+  justify-content: flex-start; /* Align items to the start (left) */
+  gap: 1px; /* Space between icons and text */
+  
+  white-space: nowrap; /* Prevent text from wrapping */
+  margin-left: 70px; /* Adjust left margin */
+  margin-right: 50px; /* Adjust right margin */
+  max-width: 500px; /* Optional: Limit max-width for better control */
+}
 
 .group-avatar {
   display: flex;
-  margin-right: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 3px; /* Space between the icons */
+}
+.group-avatar img {
+  width: 30px;
+  height: 35px;
+  border-radius: 600%;
+  margin-left: -10px;
+  border: 1px solid white;
 }
 
-.group-avatar img {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  margin-left: -10px;
-  border: 2px solid white;
-}
 
 .group-name {
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: -70px;
+ 
 }
 
 .find-more-button {
@@ -112,10 +150,88 @@ main {
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
+  margin-left: 50px;
 }
 
 .find-more-button:hover {
   background-color: #0056b3;
+}
+
+section{
+  width: 80%;
+}
+
+#empty{
+  text-align: center;
+  font-size: 60px;
+  display: block;
+  padding-top: 50%;
+  color: rgba( 0, 0, 0, 0.25);
+}
+
+.group-chat {
+  margin-top: 300px;
+  display: flex;
+  justify-content: top;
+}
+
+.group-chat-topbar{
+  display: flex;
+  margin: 1%;
+  padding: 1% ;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.group-chat-title{
+  font-size: larger;
+  font-weight: bolder;
+}
+.group-avatar .left-side {
+  flex-grow: 30px;
+}
+
+.group-chat-rectangle {
+  padding: 65px 30px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.chat-bar{
+  align-items: center;
+  background-color: white;
+  margin: 2%;
+  margin-top: auto;
+  padding: 1%;
+  border-radius: 80px;
+line-height: 10px;
+  height: max-content;
+}
+
+.chat{
+
+}
+
+.chat-input{
+  margin-left: 2%;
+  margin-top: 2px;
+  font-size: large;
+  float: left;
+  width: 90%;
+  outline: none;
+  border: none;
+  background-color: transparent;
+} 
+
+
+.chat-icon{
+  float: right;
+  margin-right: 70%;
+  margin-left: 200%;
 }
 
 .team-options {
@@ -181,28 +297,6 @@ main {
   font-weight: bold;
   color: #333;
 }
-
-.next-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.next-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  font-size: 1.2em;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.next-button:hover {
-  background-color: #0056b3;
-}
-
 /* New styles for the chat screen */
 .chat-screen {
   display: flex;
@@ -372,4 +466,36 @@ main {
   background-color: #e8e8e8;
   padding: 10px;
   border-radius: 8px;
+}
+.payment-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.payment-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.payment-option {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  color: #333;;
+}
+.payment-option:hover {
+  transform: scale(1.05);
+  background-color: #e0e0e0;
+}
+.payment-option:active {
+  transform: scale(1);
+}
+.material-symbols-outlined {
+  font-size: 24px;
 }
