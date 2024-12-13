@@ -26,6 +26,9 @@ function App() {
   const [isSettingsClicked, setIsSettingsClicked] = useState(false);
   const [username, setUsername] = useState("BigBob");
   const [profilePicture, setProfilePicture] = useState("account_circle");
+  const [isDarkMode, setIsDarkMode] = useState(false); // Dark mode state
+  const [isNotificationsEnabled, setIsNotificationsEnabled] = useState(true); // Notifications state
+
 
   // State to track the current screen
   const [currentScreen, setCurrentScreen] = useState("main"); // Can be 'main', 'group-chat', 'booking', etc.
