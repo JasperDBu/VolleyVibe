@@ -4,9 +4,9 @@ import { provideFluentDesignSystem, fluentCard, fluentButton, fluentSearch } fro
 import { provideReactWrapper } from '@microsoft/fast-react-wrapper';
 
 provideFluentDesignSystem()
-  .register(
-    fluentSearch()
-  );
+    .register(
+        fluentSearch()
+    );
 
 const { wrap } = provideReactWrapper(React, provideFluentDesignSystem());
 
@@ -14,19 +14,21 @@ export const FluentCard = wrap(fluentCard());
 export const FluentButton = wrap(fluentButton());
 
 function App() {
-  const [teamSize, setTeamSize] = useState(null);
   const [showTeamOptions, setShowTeamOptions] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState(null);
-  const [showWelcome, setShowWelcome] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const [resetScreen, setResetScreen] = useState(false);
   const [showBookingOptions, setShowBookingOptions] = useState(false);
   const [screenReset, setScreenReset] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [selectedCourt, setSelectedCourt] = useState(null);
-  const [showChatBar, setShowChatBar] = useState(false);
-  const [chatBarHeight, setChatBarHeight] = useState("auto");
-  const [showPaymentOptions, setShowPaymentOptions] = useState(false); // State to control payment options screen
+  const [showPaymentOptions, setShowPaymentOptions] = useState(false);
+  const [isSettingsClicked, setIsSettingsClicked] = useState(false);
+  const [username, setUsername] = useState("BigBob");
+  const [profilePicture, setProfilePicture] = useState("account_circle");
+
+  // State to track the current screen
+  const [currentScreen, setCurrentScreen] = useState("main"); // Can be 'main', 'group-chat', 'booking', etc.
 
   const profiles = [
     { id: 1, name: "Alice", icon: "account_circle" },
@@ -51,19 +53,12 @@ function App() {
   const handleTeamSelect = (size) => {
     setSelectedTeam(generateTeam(size));
     setShowTeamOptions(false);
+    setCurrentScreen("team-selected"); // Change the screen to show the selected team
   };
 
   const handlePlusClick = () => {
-    setShowWelcome(false);
     setShowTeamOptions(true);
-  };
-
-  const handleSendMessage = (e) => {
-    e.preventDefault();
-    const message = e.target.previousElementSibling.value;
-    if (message.trim()) {
-      console.log("Message sent:", message);
-    }
+    setCurrentScreen("team-selection"); // Switch to team selection screen
   };
 
   const toggleMenu = () => setShowMenu(!showMenu);
@@ -72,9 +67,7 @@ function App() {
     setResetScreen(true);
     setShowMenu(false);
     setShowBookingOptions(true);
-    setShowWelcome(false);
-    setShowChatBar(false); // Ensure chat bar is hidden when booking options are displayed
-    setShowTeamOptions(true);
+    setCurrentScreen("booking");
   };
 
   const handleLocationSelect = (location) => {
@@ -88,99 +81,78 @@ function App() {
     setScreenReset(true);
   };
 
-  const handleGroupChatClick = () => {
-    setShowWelcome(false);
-    setShowChatBar(true);
-    setChatBarHeight("30px");
-  };
-
   const handlePaymentClick = () => {
     setShowPaymentOptions(true);
-    setShowWelcome(false);
     setShowTeamOptions(false);
     setShowBookingOptions(false);
-    setShowChatBar(false); // Ensure chat bar is hidden when payment options are displayed
+    setCurrentScreen("payment");
   };
 
-  const [bookedTimes, setBookedTimes] = useState({});
+  const handleSettingsClick = () => {
+    setIsSettingsClicked(true);
+    setCurrentScreen("settings");
+  };
 
   const renderSchedule = () => {
     const times = ["9:00 AM", "10:30 AM", "12:00 PM", "1:30 PM", "3:00 PM", "4:30 PM"];
     return times.map((time, index) => (
       <div key={index} className="time-slot">
         <div>{time}</div>
-        <button
-          className="book-button" onClick={handleBookingClick}>Book</button>
+        <button className="book-button">Book</button>
       </div>
     ));
   };
 
-  const OpenGroupChat = () => {
-    document.getElementById("group-chat").style.display = "flex";
-    document.getElementById("empty").style.display = "none";
-  };
-
-  const GoHome = () => {
-    document.getElementById("group-chat").style.display = "none";
-    document.getElementById("empty").style.display = "block";
-  };
-
-  const TeamSelection = ({ onSelectTeam }) => (
-    <div className="team-options">
-      <div className="team-option" onClick={() => onSelectTeam(4)}>2v2</div>
-      <div className="team-option" onClick={() => onSelectTeam(8)}>4v4</div>
-      <div className="team-option" onClick={() => onSelectTeam(12)}>6v6</div>
-    </div>
-  );
-
-  const TeamMembers = ({ selectedTeam }) => (
-    <div className="team-members">
-      <div className="team-member-grid">
-        {selectedTeam.map((member) => (
-          <div key={member.id} className="team-member">
-            <span className={`material-symbols-outlined ${member.icon}`}>{member.icon}</span>
-            <span>{member.name}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-
-  {showTeamOptions && !selectedTeam && !resetScreen && !screenReset && (
-    <TeamSelection onSelectTeam={handleTeamSelect} />
-  )}
   return (
     <div className="container">
       <header>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
         <div className="header-left">
-          <span className="header-icon material-symbols-outlined">account_circle</span>
-          <span className="username">BigBob</span>
+          <span className="header-icon material-symbols-outlined">{profilePicture}</span>
+          <span className="username">{username}</span>
         </div>
         <div className="header-right">
-          <button className="app-title" onClick={GoHome}>VolleyVibe</button>
+          <button className="app-title" onClick={() => setCurrentScreen("main")}>VolleyVibe</button>
         </div>
       </header>
 
       <main>
         <aside>
           <div className="groupsearchbar">
-            <span className="search-icon material-symbols-outlined"> search </span>
+            <span className="search-icon material-symbols-outlined">search</span>
             <input className="search-input" type="text" placeholder="Search" />
           </div>
-          <div className="group-avatar">
-            <span className="material-symbols-outlined">account_circle</span>
-            <span className="material-symbols-outlined">account_circle</span>
-            <span className="group-name" onClick={handleGroupChatClick}>+1 BobGang</span>
+          <div className="group-avatar" onClick={() => setCurrentScreen("group-chat")}>
+            <span className="material-symbols-outlined">{profilePicture}</span>
+            <span className="group-name">+1 {username}</span>
           </div>
           <div className="find-more-button" onClick={handlePlusClick}>+</div>
         </aside>
-
         <section>
           <div className="main-content">
-            {showWelcome && !resetScreen && !screenReset && <div className="initial-screen">Welcome to VolleyVibe</div>}
+            {/* Conditional rendering of the Welcome message */}
+            {currentScreen === "main" && (
+              <div className="welcome-message">
+                <h1>Welcome to VolleyVibe</h1>
+              </div>
+            )}
 
-            {showTeamOptions && !selectedTeam && !resetScreen && !screenReset && (
+            {isSettingsClicked && currentScreen === "settings" && (
+              <div className="settings-options">
+                <div className="setting-option" onClick={() => setUsername("NewUsername")}>
+                  Change Username
+                </div>
+                <div className="setting-option" onClick={() => setProfilePicture("fitness_center")}>
+                  Change Profile Picture
+                </div>
+                <div className="setting-option">
+                  Add Other Settings
+                </div>
+              </div>
+            )}
+
+            {/* Render team options only on main screen */}
+            {currentScreen === "team-selection" && showTeamOptions && !selectedTeam && (
               <div className="team-options">
                 <div className="team-option" onClick={() => handleTeamSelect(4)}>2v2</div>
                 <div className="team-option" onClick={() => handleTeamSelect(8)}>4v4</div>
@@ -188,12 +160,15 @@ function App() {
               </div>
             )}
 
-            {selectedTeam && !resetScreen && !screenReset && (
+            {/* When a team is selected, show the team members */}
+            {selectedTeam && currentScreen === "team-selected" && (
               <div className="team-members">
                 <div className="team-member-grid">
                   {selectedTeam.map((member) => (
                     <div key={member.id} className="team-member">
-                      <span className={`material-symbols-outlined ${member.icon}`}>{member.icon}</span>
+                      <span className={`material-symbols-outlined ${member.icon}`}>
+                        {member.icon}
+                      </span>
                       <span>{member.name}</span>
                     </div>
                   ))}
@@ -201,14 +176,15 @@ function App() {
               </div>
             )}
 
-            {resetScreen && showBookingOptions && !screenReset && (
+            {/* Booking options screen */}
+            {currentScreen === "booking" && resetScreen && showBookingOptions && !screenReset && (
               <div className="booking-options">
                 <div className="booking-option" onClick={() => handleLocationSelect("Beach")}>Beach</div>
                 <div className="booking-option" onClick={() => handleLocationSelect("Gym")}>Gym</div>
               </div>
             )}
 
-            {screenReset && selectedLocation && !selectedCourt && (
+            {screenReset && currentScreen === "booking" && selectedLocation && !selectedCourt && (
               <div className="court-options">
                 {["Court 1", "Court 2", "Court 3"].map((court, index) => (
                   <div key={index} className={`court-option ${court.toLowerCase().replace(" ", "-")}`} onClick={() => handleCourtSelect(court)}>
@@ -218,15 +194,15 @@ function App() {
               </div>
             )}
 
-            {screenReset && selectedCourt && (
+            {screenReset && currentScreen === "booking" && selectedCourt && (
               <div className="schedule">
                 <h3>{selectedCourt} Schedule</h3>
                 <div className="time-slots">{renderSchedule()}</div>
               </div>
             )}
 
-            {/* Payment Options styled like Court Options */}
-            {showPaymentOptions && (
+            {/* Payment options screen */}
+            {currentScreen === "payment" && (
               <div className="payment-options">
                 <div className="payment-option" onClick={() => console.log("Selected Credit Card")}>
                   Credit/Debit Card
@@ -240,29 +216,25 @@ function App() {
               </div>
             )}
 
-            <div id="empty">
-              <h1></h1> {/* Removed the 'EMPTY' text */}
-            </div>
-
-            <div id="group-chat" style={{ display: showChatBar ? "flex" : "none", flexDirection: "column" }}>
+            <div id="empty"></div>
+            <div id="group-chat" style={{ display: currentScreen === "group-chat" ? "flex" : "none" }}>
               <div className="group-chat-topbar">
                 <div className="group-chat-title">BobGang</div>
-                {!showWelcome && <div className="hamburger-icon" onClick={toggleMenu}>&#9776;</div>}
+                <div className="hamburger-icon" onClick={toggleMenu}>&#9776;</div>
                 {showMenu && (
                   <div className="dropdown-menu">
-                    <div className="menu-item">Group Chat</div>
+                    <div className="menu-item" onClick={handleSettingsClick}>Settings</div>
                     <div className="menu-item" onClick={handleBookingClick}>Booking</div>
                     <div className="menu-item" onClick={handlePaymentClick}>Payment</div>
                   </div>
                 )}
               </div>
               <div className="chat"></div>
-              <div className="chat-bar" style={{ height: chatBarHeight }}>
+              <div className="chat-bar">
                 <form>
-                  <input className="chat-input" type="text" placeholder="Type a message..." />
-                  <button type="submit" style={{ display: 'none' }}></button>
-                  <span className="material-symbols-outlined" onClick={handleSendMessage}>send</span>
+                  <input className="chat-input" type="text" placeholder="text" />
                 </form>
+                <span className="chat-icon material-symbols-outlined">send</span>
               </div>
             </div>
           </div>
