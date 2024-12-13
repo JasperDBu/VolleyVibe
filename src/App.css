@@ -55,10 +55,23 @@ aside{
 
 .main-content {
   flex: 1;
-  /* display: flex; */
+   display: flex; 
   justify-content: center;
   align-items: center;
   background-color: #FDF3E3;
+  height: 100%;
+  flex-direction: column;
+}
+.welcome-message h1{
+  font-size: 3rem;
+  color: #333;
+}
+.initial-screen {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+  margin-top: 20px;
   padding: 20px;
 }
 
@@ -76,6 +89,7 @@ aside{
 
 .search-input{
   font-size: medium;
+  font-weight: bold;
   flex: 1;
   outline: none;
   border: none;
@@ -145,19 +159,24 @@ aside{
 
 section{
   width: 80%;
+  background-color: #FDF3E3 ;
+}
+
+.section-placeholder{
+  color: rgba( 0, 0, 0, 0.25);
+  font-weight: bold;
+  font-size: 75px;
 }
 
 #empty{
-  text-align: center;
-  font-size: 60px;
-  display: block;
-  padding-top: 15%;
-  color: rgba( 0, 0, 0, 0.25);
+  display: none;  
 }
 
 #group-chat{
   display: none;
   flex-direction: column;
+  width: 100%;
+  flex: 1;
 }
 
 .group-chat-topbar{
@@ -403,6 +422,7 @@ section{
   background-color: #ecddc6;
 }
 
+
 /* Different colors for Beach vs Gym */
 .beach {
   background-color: #0099ff;
@@ -484,7 +504,7 @@ section{
   color: #333;;
 }
 .payment-option:hover {
-  transform: scale(1.05);
+  transform: scale(1.01);
   background-color: #e0e0e0;
 }
 .payment-option:active {
