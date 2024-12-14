@@ -28,7 +28,23 @@ function App() {
   const [profilePicture, setProfilePicture] = useState("account_circle");
   const [isDarkMode, setIsDarkMode] = useState(false); // Dark mode state
   const [isNotificationsEnabled, setIsNotificationsEnabled] = useState(true); // Notifications state
+  const [showNotification, setShowNotification] = useState(false);
+const [notificationMessage, setNotificationMessage] = useState("");
 
+
+const triggerNotification = (message) => {
+  setNotificationMessage(message);
+  setShowNotification(true);
+
+  setTimeout(() => {
+    setShowNotification(false);
+  }, 3000);
+};
+{showNotification && (
+  <div className="notification">
+    {notificationMessage}
+  </div>
+)}
 
   // State to track the current screen
   const [currentScreen, setCurrentScreen] = useState("main"); // Can be 'main', 'group-chat', 'booking', etc.
@@ -132,27 +148,59 @@ function App() {
           <div className="find-more-button" onClick={handlePlusClick}>+</div>
         </aside>
         <section>
-          <div className="main-content">
+        <div className="main-content">
             {/* Conditional rendering of the Welcome message */}
             {currentScreen === "main" && (
               <div className="welcome-message">
-                <h1>Welcome to VolleyVibe</h1>
+                <div className="section-placeholder">Welcome to VolleyVibe</div>
               </div>
             )}
 
-            {isSettingsClicked && currentScreen === "settings" && (
-              <div className="settings-options">
-                <div className="setting-option" onClick={() => setUsername("NewUsername")}>
-                  Change Username
-                </div>
-                <div className="setting-option" onClick={() => setProfilePicture("fitness_center")}>
-                  Change Profile Picture
-                </div>
-                <div className="setting-option">
-                  Add Other Settings
-                </div>
-              </div>
-            )}
+
+{isSettingsClicked && currentScreen === "settings" && (
+  <div className="settings-options">
+    <div className="setting-option" onClick={() => setUsername("NewUsername")}>
+      Change Username
+    </div>
+    <div className="setting-option" onClick={() => setProfilePicture("fitness_center")}>
+      Change Profile Picture
+    </div>
+
+    {/* Dark Mode Toggle */}
+    <div className="setting-option">
+      <label>
+        <span 
+          className="material-symbols-outlined" 
+          onClick={() => {
+            setIsDarkMode(!isDarkMode);  // Toggle dark mode state
+            document.body.classList.toggle('dark-mode', !isDarkMode); // Toggle dark-mode class on body
+            // Toggle aside background color without affecting other styles
+            document.querySelector('aside').classList.toggle('dark-mode', !isDarkMode);
+          }}
+        >
+          dark_mode
+        </span>
+        Dark Mode
+      </label>
+    </div>
+
+    {/* Notifications Toggle */}
+    <div className="setting-option">
+      <label>
+        <span className="material-symbols-outlined">
+          notifications
+        </span>
+        Enable Notifications
+        <input 
+          type="checkbox" 
+          checked={isNotificationsEnabled} 
+          onChange={() => setIsNotificationsEnabled(!isNotificationsEnabled)} 
+        />
+      </label>
+    </div>
+  </div>
+)}
+
 
             {/* Render team options only on main screen */}
             {currentScreen === "team-selection" && showTeamOptions && !selectedTeam && (
