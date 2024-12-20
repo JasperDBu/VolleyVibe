@@ -29,23 +29,11 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(false); // Dark mode state
   const [isNotificationsEnabled, setIsNotificationsEnabled] = useState(true); // Notifications state
   const [showNotification, setShowNotification] = useState(false);
-const [notificationMessage, setNotificationMessage] = useState("");
-
-
-const triggerNotification = (message) => {
-  setNotificationMessage(message);
-  setShowNotification(true);
-
-  setTimeout(() => {
-    setShowNotification(false);
-  }, 3000);
-};
-{showNotification && (
-  <div className="notification">
-    {notificationMessage}
-  </div>
-)}
-
+  const [notificationMessage, setNotificationMessage] = useState("");
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null); // New state
+  const [showConfirmationDialog, setShowConfirmationDialog] = useState(false); // Show confirmation dialog
+  const [actionToConfirm, setActionToConfirm] = useState(null); // Track the action to confirm
+  const [showReceipt, setShowReceipt] = useState(false); // Show receipt after confirmation
   // State to track the current screen
   const [currentScreen, setCurrentScreen] = useState("main"); // Can be 'main', 'group-chat', 'booking', etc.
 
@@ -111,13 +99,20 @@ const triggerNotification = (message) => {
     setIsSettingsClicked(true);
     setCurrentScreen("settings");
   };
+  
 
+  // Function to handle "Book" button click and navigate to the payment screen
+  const handleBookClick = () => {
+    setCurrentScreen("payment"); // Change the screen to payment when the "Book" button is clicked
+  };
+
+  // Function to render the time slots with the "Book" button
   const renderSchedule = () => {
     const times = ["9:00 AM", "10:30 AM", "12:00 PM", "1:30 PM", "3:00 PM", "4:30 PM"];
     return times.map((time, index) => (
       <div key={index} className="time-slot">
         <div>{time}</div>
-        <button className="book-button">Book</button>
+        <button className="book-button" onClick={handleBookClick}>Book</button>
       </div>
     ));
   };
@@ -148,7 +143,7 @@ const triggerNotification = (message) => {
           <div className="find-more-button" onClick={handlePlusClick}>+</div>
         </aside>
         <section>
-        <div className="main-content">
+          <div className="main-content">
             {/* Conditional rendering of the Welcome message */}
             {currentScreen === "main" && (
               <div className="welcome-message">
@@ -156,61 +151,102 @@ const triggerNotification = (message) => {
               </div>
             )}
 
+            {/* Settings Screen */}
+            {isSettingsClicked && currentScreen === "settings" && (
+              <div className="settings-options">
+                <div className="setting-option" onClick={() => setUsername("NewUsername")}>
+                  Change Username
+                </div>
+                <div className="setting-option" onClick={() => setProfilePicture("fitness_center")}>
+                  Change Profile Picture
+                </div>
 
-{isSettingsClicked && currentScreen === "settings" && (
-  <div className="settings-options">
-    <div className="setting-option" onClick={() => setUsername("NewUsername")}>
-      Change Username
-    </div>
-    <div className="setting-option" onClick={() => setProfilePicture("fitness_center")}>
-      Change Profile Picture
+                {/* Dark Mode Toggle */}
+                <div className="setting-option">
+                  <label>
+                    <span 
+                      className="material-symbols-outlined" 
+                      onClick={() => {
+                        setIsDarkMode(!isDarkMode);  // Toggle dark mode state
+                        document.body.classList.toggle('dark-mode', !isDarkMode); // Toggle dark-mode class on body
+                        // Toggle aside background color without affecting other styles
+                        document.querySelector('aside').classList.toggle('dark-mode', !isDarkMode);
+                      }}
+                    >
+                      dark_mode
+                    </span>
+                    Dark Mode
+                  </label>
+                </div>
+
+                {/* Notifications Toggle */}
+                <div className="setting-option">
+                  <label>
+                    <span className="material-symbols-outlined">
+                      notifications
+                    </span>
+                    Enable Notifications
+                    <input 
+                      type="checkbox" 
+                      checked={isNotificationsEnabled} 
+                      onChange={() => setIsNotificationsEnabled(!isNotificationsEnabled)} 
+                    />
+                  </label>
+                </div>
+              </div>
+            )}
+{currentScreen === "payment" && (
+  <div className="payment-options">
+    {/* Credit Card Option */}
+    <div 
+      className="payment-option" 
+      onClick={() => setSelectedPaymentMethod('creditCard')}
+      style={{ backgroundColor: selectedPaymentMethod === 'creditCard' ? '#f0f0f0' : 'transparent' }}
+    >
+      <span className="material-symbols-outlined">credit_card</span> Credit/Debit Card
+      {selectedPaymentMethod === 'creditCard' && (
+        <div className="payment-details">
+          <div className="payment-amount">Amount: $50.00</div>
+          <div className="payment-description">Pay using your credit or debit card.</div>
+          <button className="proceed-button" onClick={() => console.log("Proceed with Credit Card")}>Proceed</button>
+        </div>
+      )}
     </div>
 
-    {/* Dark Mode Toggle */}
-    <div className="setting-option">
-      <label>
-        <span 
-          className="material-symbols-outlined" 
-          onClick={() => {
-            setIsDarkMode(!isDarkMode);  // Toggle dark mode state
-            document.body.classList.toggle('dark-mode', !isDarkMode); // Toggle dark-mode class on body
-            // Toggle aside background color without affecting other styles
-            document.querySelector('aside').classList.toggle('dark-mode', !isDarkMode);
-          }}
-        >
-          dark_mode
-        </span>
-        Dark Mode
-      </label>
+    {/* PayPal Option */}
+    
+    <div 
+      className="payment-option" 
+      onClick={() => setSelectedPaymentMethod('paypal')}
+      style={{ backgroundColor: selectedPaymentMethod === 'paypal' ? '#f0f0f0' : 'transparent' }}
+    >
+      <span className="material-symbols-outlined">payments</span> PayPal
+      {selectedPaymentMethod === 'paypal' && (
+        <div className="payment-details">
+          <div className="payment-amount">Amount: $50.00</div>
+          <div className="payment-description">Pay securely through PayPal.</div>
+          <button className="proceed-button" onClick={() => console.log("Proceed with PayPal")}>Proceed</button>
+        </div>
+      )}
     </div>
 
-    {/* Notifications Toggle */}
-    <div className="setting-option">
-      <label>
-        <span className="material-symbols-outlined">
-          notifications
-        </span>
-        Enable Notifications
-        <input 
-          type="checkbox" 
-          checked={isNotificationsEnabled} 
-          onChange={() => setIsNotificationsEnabled(!isNotificationsEnabled)} 
-        />
-      </label>
+    {/* Bank Transfer Option */}
+    <div 
+      className="payment-option" 
+      onClick={() => setSelectedPaymentMethod('bankTransfer')}
+      style={{ backgroundColor: selectedPaymentMethod === 'bankTransfer' ? '#f0f0f0' : 'transparent' }}
+    >
+      <span className="material-symbols-outlined">account_balance_wallet</span> Bank Transfer
+      {selectedPaymentMethod === 'bankTransfer' && (
+        <div className="payment-details">
+          <div className="payment-amount">Amount: $50.00</div>
+          <div className="payment-description">Make a direct transfer from your bank account.</div>
+          <button className="proceed-button" onClick={() => console.log("Proceed with Bank Transfer")}>Proceed</button>
+        </div>
+      )}
     </div>
   </div>
 )}
-
-
-            {/* Render team options only on main screen */}
-            {currentScreen === "team-selection" && showTeamOptions && !selectedTeam && (
-              <div className="team-options">
-                <div className="team-option" onClick={() => handleTeamSelect(4)}>2v2</div>
-                <div className="team-option" onClick={() => handleTeamSelect(8)}>4v4</div>
-                <div className="team-option" onClick={() => handleTeamSelect(12)}>6v6</div>
-              </div>
-            )}
-
             {/* When a team is selected, show the team members */}
             {selectedTeam && currentScreen === "team-selected" && (
               <div className="team-members">
@@ -251,22 +287,6 @@ const triggerNotification = (message) => {
                 <div className="time-slots">{renderSchedule()}</div>
               </div>
             )}
-
-            {/* Payment options screen */}
-            {currentScreen === "payment" && (
-              <div className="payment-options">
-                <div className="payment-option" onClick={() => console.log("Selected Credit Card")}>
-                  Credit/Debit Card
-                </div>
-                <div className="payment-option" onClick={() => console.log("Selected PayPal")}>
-                  PayPal
-                </div>
-                <div className="payment-option" onClick={() => console.log("Selected Bank Transfer")}>
-                  Bank Transfer
-                </div>
-              </div>
-            )}
-
             <div id="empty"></div>
             <div id="group-chat" style={{ display: currentScreen === "group-chat" ? "flex" : "none" }}>
               <div className="group-chat-topbar">
