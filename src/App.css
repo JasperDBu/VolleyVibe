@@ -1,595 +1,318 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  font-family: Arial, sans-serif;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* Ensure the container uses the full height of the viewport */
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 20px;
-  background-color: #ffffff;
-  flex-shrink: 10;
-  align-items: center;
-}
-
-.header-left{
-  display: flex;
-  align-items: center;
-}
-
-.header-left .username {
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-.header-right .app-title {
-  font-weight: bold;
-  font-size: 1.2em;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-main {
-  display: flex;
-  flex: 1;
-  height: 90%; /* Ensures the main area fills the rest of the page */
-  background-color: #FDF3E3;
-}
-
-aside{
-  background-color: #F4E4C9;
-  width: 20%;
-  padding: 15px;
-}
-
-.main-content {
-  flex: 1;
-   display: flex; 
-  justify-content: center;
-  align-items: center;
-  background-color: #FDF3E3;
-  height: 100%;
-  flex-direction: column;
-}
-section{
-  width: 80%;
-  background-color: #FDF3E3 ;
-}
-
-.section-placeholder{
-  color: rgba( 0, 0, 0, 0.25);
-  font-weight: bold;
-  font-size: 75px;
-}
-
-
-.groupsearchbar{
-  display: flex;
-  align-items: center;
-  margin: 5%;
-  border: none;
-  width: max-content;
-  background-color: white;
-  border-radius: 28px;
-  width: 84%;
-  padding: 3%;
-}
-
-.search-input{
-  font-size: medium;
-  flex: 1;
-  outline: none;
-  border: none;
-  background-color: transparent;
-}
-
-.search-input::placeholder,
-.search-icon{
-  color: rgba( 0, 0, 0, 0.25);
-}
-
-.group-item {
-  display: flex;
-  align-items: center;
-  padding: 10px 15px;
-  margin-bottom: 20px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  width: 200px;
-}
-
-.group-avatar {
-  display: flex;
-  background-color: white;
-  padding: 5px;
-  border-radius: 20px;
-  align-items: center;
-  cursor: pointer;
-}
-
-.group-avatar img {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  margin-left: -10px;
-  border: 2px solid white;
-}
-
-.group-name {
-  font-weight: bold;
-  margin-left: 10px;
-}
-
-.find-more-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-  background-color: #007bff;
-  color: white;
-  font-size: 1.5em;
-  font-weight: bold;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-  margin-left: 35%;
-}
-
-.find-more-button:hover {
-  background-color: #0056b3;
-}
-
-section{
-  width: 80%;
-}
-
-#empty{
-  display: none;  
-}
-
-#group-chat{
-  display: none;
-  flex-direction: column;
-  width: 100%;
-  flex: 1;
-}
-
-.group-chat-topbar{
-  display: flex;
-  margin: 1%;
-  padding: 1% ;
-  align-items: center;
-  background-color: white;
-  border-radius: 20px;
-}
-
-.group-chat-title{
-  font-size: larger;
-  font-weight: bolder;
-}
-
-.chat-bar{
-  align-items: center;
-  background-color: white;
-  margin: 2%;
-  margin-top: auto;
-  padding: 1%;
-  border-radius: 20px;
-  height: max-content;
-}
-
-.chat{
-
-}
-
-.chat-input{
-  margin-left: 2%;
-  margin-top: 2px;
-  font-size: large;
-  float: left;
-  width: 90%;
-  outline: none;
-  border: none;
-  background-color: transparent;
-}
-
-.chat-icon{
-  float: right;
-  margin-right: 2%;
-  margin-left: 2%;
-}
-
-.team-options {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.team-option {
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: white;
-  font-size: 1.2em;
-  text-align: center;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.team-option:hover {
-  background-color: #0056b3;
-}
-
-.team-members {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.team-member-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  max-width: 600px;
-}
-
-.team-member {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 10px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.team-member .avatar img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-
-.team-member .name {
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-.initial-screen {
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: #333;
-}
-
-.next-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.next-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  font-size: 1.2em;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.next-button:hover {
-  background-color: #0056b3;
-}
-
-/* New styles for the chat screen */
-.chat-screen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5em;
-  color: #007bff;
-  font-weight: bold;
-}
-
-.chat-message {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-.hamburger-icon {
-  cursor: pointer;
-  font-size: 1.5em;
-  margin-left: auto;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 50px; /* Adjust this based on your header height */
-  right: 20px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
-
-.menu-item {
-  padding: 10px;
-  font-size: 1em;
-  cursor: pointer;
-}
-
-.menu-item:hover {
-  background-color: #f0f0f0;
-}
-
-/* Add styles for the Beach and Gym options */
-.booking-options {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 20px;
-  flex-direction: column; /* Stack the options vertically */
-}
-
-.booking-option {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  font-size: 1.2em;
-  text-align: center;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 150px; /* Set width to make them look like rectangular buttons */
-}
-
-.booking-option:hover {
-  background-color: #78aee7;
-}
-
-
-.court-options {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-top: 10px;
-}
-.court-options {
-  display: flex;
-  flex-direction: column; /* Arrange court options vertically */
-  align-items: center;
-  margin-top: 20px;
-  gap: 15px; /* Add vertical spacing between court options */
-}
-
-.court-option {
-  padding: 10px;
-  font-size: 18px;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 50px;
-  transition: background-color 0.3s ease;
-  gap: 15px;
-}
-
-.court-option:hover {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.court-1 {
-  background-color: #ecddc6;
-}
-
-.court-2 {
-  background-color: #ecddc6;
-}
-
-.court-3 {
-  background-color: #ecddc6;
-}
-
-
-/* Different colors for Beach vs Gym */
-.beach {
-  background-color: #0099ff;
-  color: white;
-}
-
-.gym {
-  background-color: #ff4d4d;
-  color: white;
-}
-.court-schedule {
-  padding: 20px;
-  text-align: center;
-}
-
-.schedule-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr); /* 7 columns (1 for Court name + 6 for time slots) */
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.court-row {
-  display: grid;
-  grid-template-columns: 1fr repeat(6, 1fr); /* 1 for Court name and 6 for time slots */
-  align-items: center;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 10px;
-}
-
-.court-name {
-  font-weight: bold;
-  text-align: left;
-  padding-left: 20px;
-}
-
-.schedule {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.time-slots {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.time-slot {
-  display: flex;
-  justify-content: space-between;
-  background-color: #e8e8e8;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-.payment-table {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.payment-row {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.payment-option {
-  background-color: #f0f0f0;
-  padding: 20px;
-  border-radius: 5px;
-  text-align: center;
-  cursor: pointer;
-  font-size: 18px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
-  color: #333;;
-}
-.payment-option:hover {
-  transform: scale(1.01);
-  background-color: #e0e0e0;
-}
-.payment-option:active {
-  transform: scale(1);
-}
-.material-symbols-outlined {
-  font-size: 24px;
-}
-.setting-option{
-  padding: 10px 20px;
-  background-color:#0078d4 ;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 10px ;
-  text-align: center;
-  width: 100%;
-  display: block;
-}
-.setting-option:hover{
-  background-color: #005a9e ;
-
-}
-.setting-options{
-  padding: 20px;
-  display: flex;
-  flex-direction:column ;
-  gap: 10px;
-}
-.setting-option{
-  border: 2px solid #0078d4;
-  border-radius: 8px;
-  padding: 12px;
-  cursor: pointer;
-  text-align: center;
-  background-color: #bea5a5;
-  font-weight: bold;
-}
-.setting-option:hover{
-  background-color: #e1e1e1;
-}
-/*.setting-option input[type="checkbox"] {*/
- /* margin-left: 10px;*/
-/*}*/
-.setting-option {
-  background-color: inherit;  /* Ensure no background color changes for setting options */
-}
-/* Default background for the body */
-body {
-  background-color: #f4f4f4; /* Light background for normal mode */
-  color: black; /* Default text color */
-  transition: background-color 0.3s ease; /* Smooth transition for background */
-}
-
-/* Dark mode applied to the body */
-/* Dark Mode Styles */
-body.dark-mode {
-  background-color: #121212;
-
-}
-/* Ensure other elements are not affected */
-.material-symbols-outlined,
-.setting-option,
-input[type="checkbox"] {
-  color: inherit;  /* Ensure that icons and other elements retain their original color */
-}
-aside.dark-mode {
-  background-color: #332e2e;
-}
-input[type="checkbox"] {
-  accent-color: inherit; /* Keep the checkbox color unaffected */
-}
-/* Ensure the main content and containers change to dark background */
-body.dark-mode .main-content,
-body.dark-mode .container,
-body.dark-mode .mini-container,
-body.dark-mode .header,
-body.dark-mode .settings-options {
-  background-color: #333; /* Dark background for containers */
-  transition: background-color 0.3s ease; /* Smooth transition */
-}
-/* Keep text color the same and unaffected by dark mode */
-body.dark-mode * {
-  color: inherit !important; /* Ensure the text color remains the same */
-}
-.notification {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #333;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  z-index: 1000;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+import React, { useState } from "react";
+import "./App.css";
+import { provideFluentDesignSystem, fluentCard, fluentButton, fluentSearch } from '@fluentui/web-components';
+import { provideReactWrapper } from '@microsoft/fast-react-wrapper';
+
+provideFluentDesignSystem()
+    .register(
+        fluentSearch()
+    );
+
+const { wrap } = provideReactWrapper(React, provideFluentDesignSystem());
+
+export const FluentCard = wrap(fluentCard());
+export const FluentButton = wrap(fluentButton());
+
+function App() {
+  const [showTeamOptions, setShowTeamOptions] = useState(false);
+  const [selectedTeam, setSelectedTeam] = useState(null);
+  const [showMenu, setShowMenu] = useState(false);
+  const [resetScreen, setResetScreen] = useState(false);
+  const [showBookingOptions, setShowBookingOptions] = useState(false);
+  const [screenReset, setScreenReset] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const [selectedCourt, setSelectedCourt] = useState(null);
+  const [showPaymentOptions, setShowPaymentOptions] = useState(false);
+  const [isSettingsClicked, setIsSettingsClicked] = useState(false);
+  const [username, setUsername] = useState("BigBob");
+  const [profilePicture, setProfilePicture] = useState("account_circle");
+  const [isDarkMode, setIsDarkMode] = useState(false); // Dark mode state
+  const [isNotificationsEnabled, setIsNotificationsEnabled] = useState(true); // Notifications state
+  const [showNotification, setShowNotification] = useState(false);
+  const [notificationMessage, setNotificationMessage] = useState("");
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null); // New state
+  const [showConfirmationDialog, setShowConfirmationDialog] = useState(false); // Show confirmation dialog
+  const [actionToConfirm, setActionToConfirm] = useState(null); // Track the action to confirm
+  const [showReceipt, setShowReceipt] = useState(false); // Show receipt after confirmation
+  // State to track the current screen
+  const [currentScreen, setCurrentScreen] = useState("main"); // Can be 'main', 'group-chat', 'booking', etc.
+
+  const profiles = [
+    { id: 1, name: "Alice", icon: "account_circle" },
+    { id: 2, name: "Bob", icon: "sports_volleyball" },
+    { id: 3, name: "Charlie", icon: "group" },
+    { id: 4, name: "David", icon: "star" },
+    { id: 5, name: "Eve", icon: "person" },
+    { id: 6, name: "Frank", icon: "fitness_center" },
+    { id: 7, name: "Grace", icon: "sports" },
+    { id: 8, name: "Hannah", icon: "face" },
+    { id: 9, name: "Ivy", icon: "home" },
+    { id: 10, name: "Jack", icon: "sports_handball" },
+    { id: 11, name: "Kenny", icon: "work" },
+    { id: 12, name: "Liam", icon: "school" },
+  ];
+
+  const generateTeam = (size) => {
+    const shuffledProfiles = [...profiles].sort(() => 0.5 - Math.random());
+    return shuffledProfiles.slice(0, size);
+  };
+
+  const handleTeamSelect = (size) => {
+    setSelectedTeam(generateTeam(size));
+    setShowTeamOptions(false);
+    setCurrentScreen("team-selected"); // Change the screen to show the selected team
+  };
+
+  const handlePlusClick = () => {
+    setShowTeamOptions(true);
+    setCurrentScreen("team-selection"); // Switch to team selection screen
+  };
+
+  const toggleMenu = () => setShowMenu(!showMenu);
+
+  const handleBookingClick = () => {
+    setResetScreen(true);
+    setShowMenu(false);
+    setShowBookingOptions(true);
+    setCurrentScreen("booking");
+  };
+
+  const handleLocationSelect = (location) => {
+    setSelectedLocation(location);
+    setScreenReset(true);
+    setShowBookingOptions(false);
+  };
+
+  const handleCourtSelect = (court) => {
+    setSelectedCourt(court);
+    setScreenReset(true);
+  };
+
+  const handlePaymentClick = () => {
+    setShowPaymentOptions(true);
+    setShowTeamOptions(false);
+    setShowBookingOptions(false);
+    setCurrentScreen("payment");
+  };
+
+  const handleSettingsClick = () => {
+    setIsSettingsClicked(true);
+    setCurrentScreen("settings");
+  };
+  
+
+  // Function to handle "Book" button click and navigate to the payment screen
+  const handleBookClick = () => {
+    setCurrentScreen("payment"); // Change the screen to payment when the "Book" button is clicked
+  };
+
+  // Function to render the time slots with the "Book" button
+  const renderSchedule = () => {
+    const times = ["9:00 AM", "10:30 AM", "12:00 PM", "1:30 PM", "3:00 PM", "4:30 PM"];
+    return times.map((time, index) => (
+      <div key={index} className="time-slot">
+        <div>{time}</div>
+        <button className="book-button" onClick={handleBookClick}>Book</button>
+      </div>
+    ));
+  };
+
+  return (
+    <div className="container">
+      <header>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+        <div className="header-left">
+          <span className="header-icon material-symbols-outlined">{profilePicture}</span>
+          <span className="username">{username}</span>
+        </div>
+        <div className="header-right">
+          <button className="app-title" onClick={() => setCurrentScreen("main")}>VolleyVibe</button>
+        </div>
+      </header>
+
+      <main>
+        <aside>
+          <div className="groupsearchbar">
+            <span className="search-icon material-symbols-outlined">search</span>
+            <input className="search-input" type="text" placeholder="Search" />
+          </div>
+          <div className="group-avatar" onClick={() => setCurrentScreen("group-chat")}>
+            <span className="material-symbols-outlined">{profilePicture}</span>
+            <span className="group-name">+1 {username}</span>
+          </div>
+          <div className="find-more-button" onClick={handlePlusClick}>+</div>
+        </aside>
+        <section>
+          <div className="main-content">
+            {/* Conditional rendering of the Welcome message */}
+            {currentScreen === "main" && (
+              <div className="welcome-message">
+                <div className="section-placeholder">Welcome to VolleyVibe</div>
+              </div>
+            )}
+
+            {/* Settings Screen */}
+            {isSettingsClicked && currentScreen === "settings" && (
+              <div className="settings-options">
+                <div className="setting-option" onClick={() => setUsername("NewUsername")}>
+                  Change Username
+                </div>
+                <div className="setting-option" onClick={() => setProfilePicture("fitness_center")}>
+                  Change Profile Picture
+                </div>
+
+                {/* Dark Mode Toggle */}
+                <div className="setting-option">
+                  <label>
+                    <span 
+                      className="material-symbols-outlined" 
+                      onClick={() => {
+                        setIsDarkMode(!isDarkMode);  // Toggle dark mode state
+                        document.body.classList.toggle('dark-mode', !isDarkMode); // Toggle dark-mode class on body
+                        // Toggle aside background color without affecting other styles
+                        document.querySelector('aside').classList.toggle('dark-mode', !isDarkMode);
+                      }}
+                    >
+                      dark_mode
+                    </span>
+                    Dark Mode
+                  </label>
+                </div>
+
+                {/* Notifications Toggle */}
+                <div className="setting-option">
+                  <label>
+                    <span className="material-symbols-outlined">
+                      notifications
+                    </span>
+                    Enable Notifications
+                    <input 
+                      type="checkbox" 
+                      checked={isNotificationsEnabled} 
+                      onChange={() => setIsNotificationsEnabled(!isNotificationsEnabled)} 
+                    />
+                  </label>
+                </div>
+              </div>
+            )}
+{currentScreen === "payment" && (
+  <div className="payment-options">
+    {/* Credit Card Option */}
+    <div 
+      className="payment-option" 
+      onClick={() => setSelectedPaymentMethod('creditCard')}
+      style={{ backgroundColor: selectedPaymentMethod === 'creditCard' ? '#f0f0f0' : 'transparent' }}
+    >
+      <span className="material-symbols-outlined">credit_card</span> Credit/Debit Card
+      {selectedPaymentMethod === 'creditCard' && (
+        <div className="payment-details">
+          <div className="payment-amount">Amount: $50.00</div>
+          <div className="payment-description">Pay using your credit or debit card.</div>
+          <button className="proceed-button" onClick={() => console.log("Proceed with Credit Card")}>Proceed</button>
+        </div>
+      )}
+    </div>
+
+    {/* PayPal Option */}
+    
+    <div 
+      className="payment-option" 
+      onClick={() => setSelectedPaymentMethod('paypal')}
+      style={{ backgroundColor: selectedPaymentMethod === 'paypal' ? '#f0f0f0' : 'transparent' }}
+    >
+      <span className="material-symbols-outlined">payments</span> PayPal
+      {selectedPaymentMethod === 'paypal' && (
+        <div className="payment-details">
+          <div className="payment-amount">Amount: $50.00</div>
+          <div className="payment-description">Pay securely through PayPal.</div>
+          <button className="proceed-button" onClick={() => console.log("Proceed with PayPal")}>Proceed</button>
+        </div>
+      )}
+    </div>
+
+    {/* Bank Transfer Option */}
+    <div 
+      className="payment-option" 
+      onClick={() => setSelectedPaymentMethod('bankTransfer')}
+      style={{ backgroundColor: selectedPaymentMethod === 'bankTransfer' ? '#f0f0f0' : 'transparent' }}
+    >
+      <span className="material-symbols-outlined">account_balance_wallet</span> Bank Transfer
+      {selectedPaymentMethod === 'bankTransfer' && (
+        <div className="payment-details">
+          <div className="payment-amount">Amount: $50.00</div>
+          <div className="payment-description">Make a direct transfer from your bank account.</div>
+          <button className="proceed-button" onClick={() => console.log("Proceed with Bank Transfer")}>Proceed</button>
+        </div>
+      )}
+    </div>
+  </div>
+)}
+            {/* When a team is selected, show the team members */}
+            {selectedTeam && currentScreen === "team-selected" && (
+              <div className="team-members">
+                <div className="team-member-grid">
+                  {selectedTeam.map((member) => (
+                    <div key={member.id} className="team-member">
+                      <span className={`material-symbols-outlined ${member.icon}`}>
+                        {member.icon}
+                      </span>
+                      <span>{member.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Booking options screen */}
+            {currentScreen === "booking" && resetScreen && showBookingOptions && !screenReset && (
+              <div className="booking-options">
+                <div className="booking-option" onClick={() => handleLocationSelect("Beach")}>Beach</div>
+                <div className="booking-option" onClick={() => handleLocationSelect("Gym")}>Gym</div>
+              </div>
+            )}
+
+            {screenReset && currentScreen === "booking" && selectedLocation && !selectedCourt && (
+              <div className="court-options">
+                {["Court 1", "Court 2", "Court 3"].map((court, index) => (
+                  <div key={index} className={`court-option ${court.toLowerCase().replace(" ", "-")}`} onClick={() => handleCourtSelect(court)}>
+                    {court}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {screenReset && currentScreen === "booking" && selectedCourt && (
+              <div className="schedule">
+                <h3>{selectedCourt} Schedule</h3>
+                <div className="time-slots">{renderSchedule()}</div>
+              </div>
+            )}
+            <div id="empty"></div>
+            <div id="group-chat" style={{ display: currentScreen === "group-chat" ? "flex" : "none" }}>
+              <div className="group-chat-topbar">
+                <div className="group-chat-title">BobGang</div>
+                <div className="hamburger-icon" onClick={toggleMenu}>&#9776;</div>
+                {showMenu && (
+                  <div className="dropdown-menu">
+                    <div className="menu-item" onClick={handleSettingsClick}>Settings</div>
+                    <div className="menu-item" onClick={handleBookingClick}>Booking</div>
+                    <div className="menu-item" onClick={handlePaymentClick}>Payment</div>
+                  </div>
+                )}
+              </div>
+              <div className="chat"></div>
+              <div className="chat-bar">
+                <form>
+                  <input className="chat-input" type="text" placeholder="text" />
+                </form>
+                <span className="chat-icon material-symbols-outlined">send</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
+
+export default App;
