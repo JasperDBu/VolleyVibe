@@ -62,18 +62,17 @@ aside{
   height: 100%;
   flex-direction: column;
 }
-.welcome-message h1{
-  font-size: 3rem;
-  color: #333;
+section{
+  width: 80%;
+  background-color: #FDF3E3 ;
 }
-.initial-screen {
-  text-align: center;
-  font-size: 2em;
+
+.section-placeholder{
+  color: rgba( 0, 0, 0, 0.25);
   font-weight: bold;
-  color: #333;
-  margin-top: 20px;
-  padding: 20px;
+  font-size: 75px;
 }
+
 
 .groupsearchbar{
   display: flex;
@@ -89,7 +88,6 @@ aside{
 
 .search-input{
   font-size: medium;
-  font-weight: bold;
   flex: 1;
   outline: none;
   border: none;
@@ -159,13 +157,6 @@ aside{
 
 section{
   width: 80%;
-  background-color: #FDF3E3 ;
-}
-
-.section-placeholder{
-  color: rgba( 0, 0, 0, 0.25);
-  font-weight: bold;
-  font-size: 75px;
 }
 
 #empty{
@@ -481,17 +472,6 @@ section{
   border-radius: 8px;
 }
 
-.payment-table {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.payment-row {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
 .payment-option {
   background-color: #f0f0f0;
   padding: 20px;
@@ -505,11 +485,162 @@ section{
 }
 .payment-option:hover {
   transform: scale(1.01);
-  background-color: #e0e0e0;
+  background-color: #ac7272;
 }
-.payment-option:active {
-  transform: scale(1);
+.payment-option {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
 }
+.payment-amount {
+  font-size: 16px;
+  color: #4caf50;
+  margin-top: 5px;
+}
+.payment-description {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+
+.proceed-button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.proceed-button:hover {
+  background-color: #45a049;
+}
+
 .material-symbols-outlined {
   font-size: 24px;
+}
+.setting-option{
+  padding: 10px 20px;
+  background-color:#0078d4 ;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px ;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+.setting-option:hover{
+  background-color: #005a9e ;
+
+}
+.setting-options{
+  padding: 20px;
+  display: flex;
+  flex-direction:column ;
+  gap: 10px;
+}
+.setting-option{
+  border: 2px solid #0078d4;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  text-align: center;
+  background-color: #bea5a5;
+  font-weight: bold;
+}
+.setting-option:hover{
+  background-color: #e1e1e1;
+}
+/*.setting-option input[type="checkbox"] {*/
+ /* margin-left: 10px;*/
+/*}*/
+.setting-option {
+  background-color: inherit;  /* Ensure no background color changes for setting options */
+}
+/* Default background for the body */
+body {
+  background-color: #f4f4f4; /* Light background for normal mode */
+  color: black; /* Default text color */
+  transition: background-color 0.3s ease; /* Smooth transition for background */
+}
+
+/* Dark mode applied to the body */
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #4f4c4c;
+
+}
+/* Ensure other elements are not affected */
+.material-symbols-outlined,
+.setting-option,
+input[type="checkbox"] {
+  color: inherit;  /* Ensure that icons and other elements retain their original color */
+}
+aside.dark-mode {
+  background-color: #474444;
+}
+input[type="checkbox"] {
+  accent-color: inherit; /* Keep the checkbox color unaffected */
+}
+/* Ensure the main content and containers change to dark background */
+body.dark-mode .main-content,
+body.dark-mode .container,
+body.dark-mode .mini-container,
+body.dark-mode .header,
+body.dark-mode .settings-options {
+  background-color: #565454; /* Dark background for containers */
+  transition: background-color 0.3s ease; /* Smooth transition */
+}
+/* Keep text color the same and unaffected by dark mode */
+body.dark-mode * {
+  color: inherit !important; /* Ensure the text color remains the same */
+}
+.notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.confirmation-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmation-dialog p {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.confirmation-dialog button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #0078d4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.confirmation-dialog button:hover {
+  background-color: #005a9e;
 }
