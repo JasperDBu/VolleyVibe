@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useId } from "react";
 import "./App.css";
 import { provideFluentDesignSystem, fluentCard, fluentButton, fluentSearch } from '@fluentui/web-components';
 import { provideReactWrapper } from '@microsoft/fast-react-wrapper';
@@ -36,7 +36,8 @@ function App() {
   const [showReceipt, setShowReceipt] = useState(false); // Show receipt after confirmation
   // State to track the current screen
   const [currentScreen, setCurrentScreen] = useState("main"); // Can be 'main', 'group-chat', 'booking', etc.
-
+  const [chats, setChats] = useState([]);
+  const [chattext, setChattext] = useState("");
 
   const profiles = [
     { id: 1, name: "Alice", icon: "account_circle" },
@@ -117,6 +118,24 @@ function App() {
       </div>
     ));
   };
+
+
+  const onAddchat = (text) => {
+    const chat = {
+      text: text
+    }
+    setChats([...chats, chat])
+  };
+
+  const HandleSubmit = (e) => {
+      e.preventDefault()
+      onAddchat(chattext)
+      setChattext("")
+  };
+
+  // const HandleEnterPress = (e) =>{
+  //   if ( e.onKeyDown === 'Enter'){console.log}
+  // }
 
   return (
     <div className="container">
@@ -307,12 +326,15 @@ function App() {
                   </div>
                 )}
               </div>
-              <div className="chat"></div>
+              <div className="group-chat-space">
+                {chats.map((chat) => (
+                  <div>{chat.text}</div>
+                ))}
+              </div>
               <div className="chat-bar">
-                <form>
-                  <input className="chat-input" type="text" id="chat-text" placeholder="text" />
-                </form>
-                <span className="chat-icon material-symbols-outlined">send</span>
+                  <input className="chat-input" type="text" name="chattext" value={chattext} onChange={(e) => setChattext(e.target.value)}
+                  onKeyDown={(e) => {if (e.key === 'Enter'){HandleSubmit(e)}}} placeholder="text" />
+                <span className="chat-icon material-symbols-outlined" onClick={HandleSubmit}>send</span>
               </div>
             </div>
           </div>
