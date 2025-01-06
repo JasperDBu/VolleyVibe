@@ -199,10 +199,20 @@ section{
   width:98%;
   max-height:max-content;
   align-items: end;
-  overflow-y: auto;
+  overflow-x: auto;
 }
 
+.chat-container{
+  background-color: white;
+  border-radius: 20px;
+  padding: 1%;
+  margin-bottom: 1%;
+  width: fit-content;
+}
 
+.chat-text{
+  font-weight: bold;
+}
 
 .chat-input{
   margin-left: 2%;
