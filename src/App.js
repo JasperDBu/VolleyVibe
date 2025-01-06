@@ -24,7 +24,7 @@ function App() {
   const [selectedCourt, setSelectedCourt] = useState(null);
   const [showPaymentOptions, setShowPaymentOptions] = useState(false);
   const [isSettingsClicked, setIsSettingsClicked] = useState(false);
-  const [groupname, setGroupname] = useState("BobGang");
+  const [groupname, setGroupname] = useState('BobGang');
   const [profilePicture, setProfilePicture] = useState("account_circle");
   const [isDarkMode, setIsDarkMode] = useState(false); // Dark mode state
   const [isNotificationsEnabled, setIsNotificationsEnabled] = useState(true); // Notifications state
@@ -36,6 +36,7 @@ function App() {
   const [showReceipt, setShowReceipt] = useState(false); // Show receipt after confirmation
   // State to track the current screen
   const [currentScreen, setCurrentScreen] = useState("main"); // Can be 'main', 'group-chat', 'booking', etc.
+
 
   const profiles = [
     { id: 1, name: "Alice", icon: "account_circle" },
@@ -122,7 +123,7 @@ function App() {
       <header>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
         <div className="header-left">
-          <span className="header-icon material-symbols-outlined">{profilePicture}</span>
+        <span class="material-symbols-outlined">account_circle</span>
           <span className="username">BigBob</span>
         </div>
         <div className="header-right">
@@ -153,13 +154,8 @@ function App() {
 
             {/* Settings Screen */}
             {isSettingsClicked && currentScreen === "settings" && (
-              <div className="settings-options">
-                <form>
-                <input  className="setting-option" type="text" name="Groupname"   placeholder="New Group Name"></input>
-                <div className="setting-option" onClick={() => setGroupname("Groupname")}>
-                  Change Username
-                </div>
-                </form>
+              <div className="settings-options">                
+                <input  className="setting-option" type="text" value={groupname} onChange={(e)=>setGroupname(e.target.value)} placeholder="New Group Name"></input>
                 <div className="setting-option" onClick={() => setProfilePicture("fitness_center")}>
                   Change Profile Picture
                 </div>
