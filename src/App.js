@@ -327,8 +327,12 @@ function App() {
                 )}
               </div>
               <div className="group-chat-space">
-                {chats.map((chat) => (
-                  <div>{chat.text}</div>
+                {chats.map((chat) => (                  
+                  <div>
+                    <div>
+                      {chat.text}
+                    </div>
+                  </div>
                 ))}
               </div>
               <div className="chat-bar">

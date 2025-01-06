@@ -195,8 +195,14 @@ section{
 }
 
 .group-chat-space{
-
+  padding: 1%;
+  width:98%;
+  max-height:max-content;
+  align-items: end;
+  overflow-y: auto;
 }
+
+
 
 .chat-input{
   margin-left: 2%;
